@@ -3,6 +3,7 @@
 #define CPP_LONDON_UNI_POMODORO_H
 
 #include <QWidget>
+#include <memory>
 
 #include "pomodoro-timer.h"
 #include "ui_pomodoro.h"
