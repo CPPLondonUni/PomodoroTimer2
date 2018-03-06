@@ -11,15 +11,20 @@ Pomodoro::Pomodoro(QWidget* parent)
       ui(new Ui::Pomodoro)
 {
     ui->setupUi(this);
+
+    connect(&timer, &PomodoroTimer::tick, this, &Pomodoro::onTimerTick);
+    connect(&timer, &PomodoroTimer::completed, this, &Pomodoro::onTimerCompleted);
 }
 
 void Pomodoro::on_btnControl_clicked()
 {
     const auto seconds = std::chrono::seconds{ui->timeout->text().toUInt()};
+    timer.start(seconds);
 }
 
 void Pomodoro::onTimerTick(std::chrono::seconds timeRemaining)
 {
+    formatTime(timeRemaining);
 }
 
 void Pomodoro::onTimerCompleted()
