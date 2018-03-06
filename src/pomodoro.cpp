@@ -4,6 +4,8 @@
 #include <sstream>
 #include <iomanip>
 
+#include <QSound>
+
 namespace CppLondonUni {
 
 Pomodoro::Pomodoro(QWidget* parent)
@@ -30,6 +32,7 @@ void Pomodoro::onTimerTick(std::chrono::seconds timeRemaining)
 void Pomodoro::onTimerCompleted()
 {
     formatTime(std::chrono::seconds{0});
+    QSound::play("Annoying_Alarm_Clock.wav");
 }
 
 void Pomodoro::formatTime(std::chrono::seconds remaining)
