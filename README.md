@@ -26,7 +26,7 @@ implementation to get the app back to a working state.
 
 Now that the app is working again, we want to play a sound when the timer completes.
 Using your knowledge of the Qt Multimedia subsystem from last week, use an
-appropriate function to play the file "Annoying_Alarm_Sound.wav" when the timer
+appropriate function to play the file "Annoying_Alarm_Clock.wav" when the timer
 reaches zero.
 
 ## Task 3 ##
