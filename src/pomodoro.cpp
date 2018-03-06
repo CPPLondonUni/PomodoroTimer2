@@ -17,11 +17,11 @@ Pomodoro::Pomodoro(QWidget* parent)
     connect(&timer, &PomodoroTimer::tick, this, &Pomodoro::onTimerTick);
     connect(&timer, &PomodoroTimer::completed, this, &Pomodoro::onTimerCompleted);
     connect(&timer, &PomodoroTimer::completed, &soundEffect, &QSoundEffect::play);
+    connect(ui->btnControl, &QPushButton::clicked, &soundEffect, &QSoundEffect::stop);
 }
 
 void Pomodoro::on_btnControl_clicked()
 {
-    soundEffect.stop();
     const auto seconds = std::chrono::seconds{ui->timeout->text().toUInt()};
     timer.start(seconds);
 }
