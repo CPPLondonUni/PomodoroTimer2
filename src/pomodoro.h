@@ -3,6 +3,7 @@
 #define CPP_LONDON_UNI_POMODORO_H
 
 #include <QWidget>
+#include <QSoundEffect>
 #include <memory>
 
 #include "pomodoro-timer.h"
@@ -29,6 +30,7 @@ private:
 
     std::unique_ptr<Ui::Pomodoro> ui;
     PomodoroTimer timer;
+    QSoundEffect soundEffect;
 };
 
 

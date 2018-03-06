@@ -4,8 +4,6 @@
 #include <sstream>
 #include <iomanip>
 
-#include <QSound>
-
 namespace CppLondonUni {
 
 Pomodoro::Pomodoro(QWidget* parent)
@@ -14,12 +12,16 @@ Pomodoro::Pomodoro(QWidget* parent)
 {
     ui->setupUi(this);
 
+    soundEffect.setSource(QUrl::fromLocalFile("Annoying_Alarm_Clock.wav"));
+
     connect(&timer, &PomodoroTimer::tick, this, &Pomodoro::onTimerTick);
     connect(&timer, &PomodoroTimer::completed, this, &Pomodoro::onTimerCompleted);
+    connect(&timer, &PomodoroTimer::completed, &soundEffect, &QSoundEffect::play);
 }
 
 void Pomodoro::on_btnControl_clicked()
 {
+    soundEffect.stop();
     const auto seconds = std::chrono::seconds{ui->timeout->text().toUInt()};
     timer.start(seconds);
 }
@@ -32,7 +34,6 @@ void Pomodoro::onTimerTick(std::chrono::seconds timeRemaining)
 void Pomodoro::onTimerCompleted()
 {
     formatTime(std::chrono::seconds{0});
-    QSound::play("Annoying_Alarm_Clock.wav");
 }
 
 void Pomodoro::formatTime(std::chrono::seconds remaining)
